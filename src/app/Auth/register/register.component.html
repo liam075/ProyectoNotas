@@ -8,9 +8,9 @@
       <div class="card-body">
         <p class="login-box-msg">Registrate Ahora</p>
 
-        <form action="../../index.html" method="post">
+        <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
           <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Nombre Completo">
+            <input type="text" id="name" formControlName="name" class="form-control" placeholder="Nombre Completo">
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-user"></span>
@@ -53,7 +53,7 @@
           <div class="row pt-2">
             <!-- /.col -->
             <div class="col-6">
-              <button type="submit" class="btn btn-success btn-block">Iniciar Sesion</button>
+              <button type="submit" (click)="login()" class="btn btn-success btn-block">Iniciar Sesion</button>
             </div>
 
             <div class="col-6">
