@@ -12,9 +12,11 @@ import { CommonModule } from '@angular/common';
 })
 export class TasksComponent implements OnInit{
   formulario: FormGroup;
+  itemId: number | null = null; // Variable para guardar el ID
   isModalVisible = false;
   constructor(private fb: FormBuilder,private router: Router) {
     this.formulario = this.fb.group({
+      tasksid : [''],
       title: ['', [Validators.required]],
       subtitle: ['', [Validators.required]],
       image :  ['', [Validators.required]],
@@ -25,10 +27,17 @@ export class TasksComponent implements OnInit{
   }
 
   openModal(id:number) {
-    
+    this.itemId = id;
+    this.isModalVisible = true;
   }
 
   onSubmit() {
+    if (this.formulario.valid) { 
+      let tablero = this.formulario.value;
+      
+      console.log(" Tablero ", tablero);
+      
+    }
     // let id = 1;
     // let lista_tablero: any = [];
     // if (this.formulario.valid) {
