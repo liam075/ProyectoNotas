@@ -112,7 +112,7 @@
           </div>
         </div>
         <div class="card-header header-footer-new">
-          <button class="btn btn-block btn-secondary btn-sm" (click)="openModal(1)"> Agregar Tarjeta</button>
+          <button class="btn btn-block btn-secondary btn-sm" data-toggle="modal" data-target="#modal-lista"> Agregar Tarjeta</button>
         </div>
       </div>
       <div class="card card-row card-primary" style="height: 350px;">
@@ -136,7 +136,7 @@
         </div>
         <div class="card-header header-footer-new" >
 
-          <button class="btn btn-block btn-primary btn-sm"> Agregar Tarjeta</button>
+          <button class="btn btn-block btn-primary btn-sm" data-toggle="modal" data-target="#modal-hacer"> Agregar Tarjeta</button>
         </div>
       </div>
       <div class="card card-row card-default" style="height: 350px;">
@@ -167,7 +167,7 @@
           </div>
         </div>
         <div class="card-header bg-info header-footer-new" >
-          <button class="btn btn-block btn-info btn-sm"> Agregar Tarjeta</button>
+          <button class="btn btn-block btn-info btn-sm" data-toggle="modal" data-target="#modal-progreso"> Agregar Tarjeta</button>
         </div>
       </div>
       <div class="card card-row card-success" style="height: 350px;">
@@ -190,7 +190,7 @@
           </div>
         </div>
         <div class="card-header header-footer-new">
-          <button class="btn btn-block btn-success btn-sm"> Agregar Tarjeta</button>
+          <button class="btn btn-block btn-success btn-sm" data-toggle="modal" data-target="#modal-terminado" > Agregar Tarjeta</button>
         </div>
       </div>
     </div>
@@ -199,19 +199,19 @@
 
 
 <!-- /.modal -->
-@if (isModalVisible) {
-  <div class="modal fade" id="modal-xl" >
+
+  <div class="modal fade" id="modal-lista" >
     <div class="modal-dialog modal-xl">
       <div class="modal-content">
-        <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+        <form [formGroup]="formulario_lista" (ngSubmit)="onSubmitLista()">
           <div class="modal-header">
-            <h4 class="modal-title">Crear Tablero</h4>
+            <h4 class="modal-title">Crear Tarea</h4>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
-            <input type="hidden" formControlName="tasksid" [value]="itemId" />
+            <!--<input type="hidden" formControlName="tasksid" [value]="itemId" />-->
             <div class="input-group mb-3" >
               <input type="text" required id="title" formControlName="title" class="form-control" placeholder="Titulo">
   
@@ -224,10 +224,7 @@
             </div>
   
   
-            <div class="input-group mb-3" >
-              <input type="text" required  id="image" formControlName="image" class="form-control" placeholder="Ruta de la Imagen">
-  
-            </div>
+            
           </div>
           <div class="modal-footer justify-content-between">
             <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
@@ -239,5 +236,129 @@
     </div>
     <!-- /.modal-dialog -->
   </div>
-}
+
+<!-- /.modal -->
+
+
+<!-- /.modal -->
+
+<div class="modal fade" id="modal-hacer" >
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <form [formGroup]="formulario_hacer" (ngSubmit)="onSubmitHacer()">
+        <div class="modal-header">
+          <h4 class="modal-title">Crear Tarea</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!--<input type="hidden" formControlName="tasksid" [value]="itemId" />-->
+          <div class="input-group mb-3" >
+            <input type="text" required id="title" formControlName="title" class="form-control" placeholder="Titulo">
+
+          </div>
+
+
+          <div class="input-group mb-3" >
+            <textarea placeholder="Subtitulo"  required id="subtitle" formControlName="subtitle" class="form-control" > </textarea>
+
+          </div>
+
+
+          
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+          <button type="submit" class="btn btn-primary">Guardar</button>
+        </div>
+      </form>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+
+<!-- /.modal -->
+
+<!-- /.modal -->
+
+<div class="modal fade" id="modal-progreso" >
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <form [formGroup]="formulario_progreso" (ngSubmit)="onSubmitProgreso()">
+        <div class="modal-header">
+          <h4 class="modal-title">Crear Tarea</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!--<input type="hidden" formControlName="tasksid" [value]="itemId" />-->
+          <div class="input-group mb-3" >
+            <input type="text" required id="title" formControlName="title" class="form-control" placeholder="Titulo">
+
+          </div>
+
+
+          <div class="input-group mb-3" >
+            <textarea placeholder="Subtitulo"  required id="subtitle" formControlName="subtitle" class="form-control" > </textarea>
+
+          </div>
+
+
+          
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+          <button type="submit" class="btn btn-primary">Guardar</button>
+        </div>
+      </form>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+
+<!-- /.modal -->
+
+<!-- /.modal -->
+
+<div class="modal fade" id="modal-terminado" >
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <form [formGroup]="formulario_terminado" (ngSubmit)="onSubmitTermiando()">
+        <div class="modal-header">
+          <h4 class="modal-title">Crear Tarea</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!--<input type="hidden" formControlName="tasksid" [value]="itemId" />-->
+          <div class="input-group mb-3" >
+            <input type="text" required id="title" formControlName="title" class="form-control" placeholder="Titulo">
+
+          </div>
+
+
+          <div class="input-group mb-3" >
+            <textarea placeholder="Subtitulo"  required id="subtitle" formControlName="subtitle" class="form-control" > </textarea>
+
+          </div>
+
+
+         
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+          <button type="submit" class="btn btn-primary">Guardar</button>
+        </div>
+      </form>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+
 <!-- /.modal -->

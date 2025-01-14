@@ -13,7 +13,7 @@ export const routes: Routes = [
   { path : 'register', component : RegisterComponent},
   { path : 'tablero', component:PagesComponent, children :[
     {path : '' , component: HomeComponent},
-    {path : 'tareas' , component: TasksComponent},
+    {path : 'tareas/:id' , component: TasksComponent},
     {path : 'users' , component: UsersComponent},
     //Error 404
     { path : '404' , component: PagenotfoundComponent},
