@@ -7,12 +7,16 @@ import { Component } from '@angular/core';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-  nombre_usuario = "Administrador"
+  nombre_usuario = ""
   constructor() {
     if (localStorage.getItem('usuario_logueado')) {
       let usuario : any = localStorage.getItem('usuario_logueado');
-      let user  = JSON.parse(usuario);
+      let user : any = JSON.parse(usuario);
       this.nombre_usuario = user.name;
+    } else {
+      this.nombre_usuario = "Administrador";
+      console.log(this.nombre_usuario)
+
     }
   }
 }
