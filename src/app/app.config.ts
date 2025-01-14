@@ -3,6 +3,7 @@ import { provideRouter } from '@angular/router';
 import { provideHttpClient } from '@angular/common/http';
 import { importProvidersFrom } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';  // Agrega CommonModule
 import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
@@ -10,9 +11,11 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideHttpClient(),
-    importProvidersFrom(ReactiveFormsModule)
+    importProvidersFrom(ReactiveFormsModule),
+    importProvidersFrom(CommonModule),  // Asegúrate de importar CommonModule
   ]
 };
+
 
 /**
  import { ApplicationConfig } from '@angular/core';

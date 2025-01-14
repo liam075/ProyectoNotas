@@ -12,20 +12,28 @@
 
         <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
           <div class="input-group mb-3">
-            <input type="email" class="form-control" placeholder="Correo Electronico">
+            <input type="email" id="email" formControlName="email" class="form-control" placeholder="Correo Electronico">
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-envelope"></span>
               </div>
             </div>
           </div>
+          <div *ngIf="f['email'].touched && f['email'].invalid" class="invalid-feedback">
+            <div *ngIf="f['email'].errors?.['required']">El correo es obligatorio.</div>
+            <div *ngIf="f['email'].errors?.['email']">El correo no es válido.</div>
+          </div>
           <div class="input-group mb-3">
-            <input type="password" class="form-control" placeholder="Contraseña">
+            <input type="password" id="password" formControlName="password" class="form-control" placeholder="Contraseña">
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-lock"></span>
               </div>
             </div>
+          </div>
+          <div *ngIf="f['password'].touched && f['password'].invalid" class="invalid-feedback">
+            <div *ngIf="f['password'].errors?.['required']">La contraseña es obligatoria.</div>
+            <div *ngIf="f['password'].errors?.['minlength']">La contraseña debe tener al menos 6 caracteres.</div>
           </div>
           <div class="row">
             <div class="col-8">

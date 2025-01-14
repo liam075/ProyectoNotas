@@ -1,84 +1,79 @@
-<div class="hold-transition register-page" style=" background: linear-gradient(to right, #5faaff, #5818cf9c);">
+<div class="hold-transition register-page" style="background: linear-gradient(to right, #5faaff, #5818cf9c);">
   <div class="register-box">
     <div class="card card-outline card-primary" style="border-radius: 10px;">
       <div class="card-header text-center">
-        <img src="/image/logo.png" alt="Tareas Logo" width="110" class="brand-image img-circle elevation-3"
-             style="opacity:.8">
+        <img src="/image/logo.png" alt="Tareas Logo" width="110" class="brand-image img-circle elevation-3" style="opacity:.8">
       </div>
       <div class="card-body">
         <p class="login-box-msg">Registrate Ahora</p>
 
         <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
-          <div class="input-group mb-3">
-            <input type="text" id="name" formControlName="name" class="form-control" placeholder="Nombre Completo">
+          <div class="input-group mb-3" [ngClass]="{'is-invalid': f['name'].touched && f['name'].invalid}">
+            <input type="text" required id="name" formControlName="name" class="form-control" placeholder="Nombre Completo">
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-user"></span>
               </div>
             </div>
           </div>
-          <div class="input-group mb-3">
-            <input type="email" class="form-control" placeholder="Correo Electronico">
+          <div *ngIf="f['name'].touched && f['name'].invalid" class="invalid-feedback">
+            <div *ngIf="f['name'].errors?.['required']">El nombre es obligatorio.</div>
+            <div *ngIf="f['name'].errors?.['minlength']">El nombre debe tener al menos 3 caracteres.</div>
+          </div>
+
+          <div class="input-group mb-3" [ngClass]="{'is-invalid': f['email'].touched && f['email'].invalid}">
+            <input type="email" required id="email" formControlName="email" class="form-control" placeholder="Correo Electronico">
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-envelope"></span>
               </div>
             </div>
           </div>
-          <div class="input-group mb-3">
-            <input type="password" class="form-control" placeholder="Contraseña">
+          <div *ngIf="f['email'].touched && f['email'].invalid" class="invalid-feedback">
+            <div *ngIf="f['email'].errors?.['required']">El correo es obligatorio.</div>
+            <div *ngIf="f['email'].errors?.['email']">El correo no es válido.</div>
+          </div>
+
+          <div class="input-group mb-3" [ngClass]="{'is-invalid': f['password'].touched && f['password'].invalid}">
+            <input type="password" required id="password" formControlName="password" class="form-control" placeholder="Contraseña">
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-lock"></span>
               </div>
             </div>
           </div>
+          <div *ngIf="f['password'].touched && f['password'].invalid" class="invalid-feedback">
+            <div *ngIf="f['password'].errors?.['required']">La contraseña es obligatoria.</div>
+            <div *ngIf="f['password'].errors?.['minlength']">La contraseña debe tener al menos 6 caracteres.</div>
+          </div>
+
           <div class="row">
             <div class="col-8">
               <div class="icheck-primary">
-                <input type="checkbox" id="agreeTerms" name="terms" value="agree">
+                <input type="checkbox" id="agreeTerms" formControlName="agreeTerms" name="terms" value="agree">
                 <label for="agreeTerms">
                   Acepto los <a href="#">Terminos</a>
                 </label>
               </div>
             </div>
-            <!-- /.col -->
-            <!--
-            <div class="col-4">
-              <button type="submit" class="btn btn-primary btn-block">Register</button>
-            </div>-->
-            <!-- /.col -->
+          </div>
+
+          <div *ngIf="f['agreeTerms'].touched && f['agreeTerms'].invalid" class="invalid-feedback">
+            Debes aceptar los términos.
           </div>
 
           <div class="row pt-2">
-            <!-- /.col -->
             <div class="col-6">
-              <button type="submit" (click)="login()" class="btn btn-success btn-block">Iniciar Sesion</button>
+              <button type="submit" [disabled]="formulario.invalid" class="btn btn-success btn-block">Iniciar Sesion</button>
             </div>
 
             <div class="col-6">
               <button type="submit" class="btn btn-primary btn-block">Registrarse</button>
             </div>
-
-            <!-- /.col -->
           </div>
 
         </form>
-        <!--
-        <div class="social-auth-links text-center">
-          <a href="#" class="btn btn-block btn-primary">
-            <i class="fab fa-facebook mr-2"></i>
-            Sign up using Facebook
-          </a>
-          <a href="#" class="btn btn-block btn-danger">
-            <i class="fab fa-google-plus mr-2"></i>
-            Sign up using Google+
-          </a>
-        </div>
-
-        <a href="login.html" class="text-center">I already have a membership</a>-->
       </div>
-      <!-- /.form-box -->
-    </div><!-- /.card -->
+    </div>
   </div>
 </div>
