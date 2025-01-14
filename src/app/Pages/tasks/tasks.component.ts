@@ -18,7 +18,7 @@ export class TasksComponent implements OnInit{
   itemId: number | null = null; // Variable para guardar el ID
   isModalVisible = true;
   id : number;
-
+  lista_tareas :any = [];
 
   constructor(private fb: FormBuilder,private router: Router , private activatedroute :ActivatedRoute) {
     this.formulario_lista = this.fb.group({
@@ -46,6 +46,16 @@ export class TasksComponent implements OnInit{
     });
     let params  = this.activatedroute.snapshot.params;
     this.id = params['id'];
+
+    if (localStorage.getItem('tareas')) {
+      let tareasGuardado: any = localStorage.getItem('tareas');
+      let tareas = JSON.parse(tareasGuardado);
+      let tarea_filtrada = tareas.find((tarea : any) => tarea.id === this.id);
+      if(tarea_filtrada){
+        console.log(" Tarea Filtrada " , tarea_filtrada)
+       // this.formulario_lista.patchValue({title: tarea_filtrada.title, subtitle: tarea_filtrada.subtitle });
+      }
+    }
   }
 
 
