@@ -135,8 +135,8 @@
           </div>
         </div>
         <div class="card-header header-footer-new" >
-
-          <button class="btn btn-block btn-primary btn-sm" data-toggle="modal" data-target="#modal-hacer"> Agregar Tarjeta</button>
+          <!--id="openModal"-->
+          <button class="btn btn-block btn-primary btn-sm" data-toggle="modal" data-target="#modal-hacer" > Agregar Tarjeta</button>
         </div>
       </div>
       <div class="card card-row card-default" style="height: 350px;">
@@ -214,17 +214,17 @@
             <!--<input type="hidden" formControlName="tasksid" [value]="itemId" />-->
             <div class="input-group mb-3" >
               <input type="text" required id="title" formControlName="title" class="form-control" placeholder="Titulo">
-  
+
             </div>
-  
-  
+
+
             <div class="input-group mb-3" >
               <textarea placeholder="Subtitulo"  required id="subtitle" formControlName="subtitle" class="form-control" > </textarea>
-  
+
             </div>
-  
-  
-            
+
+
+
           </div>
           <div class="modal-footer justify-content-between">
             <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
@@ -266,7 +266,7 @@
           </div>
 
 
-          
+
         </div>
         <div class="modal-footer justify-content-between">
           <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
@@ -307,7 +307,7 @@
           </div>
 
 
-          
+
         </div>
         <div class="modal-footer justify-content-between">
           <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
@@ -348,7 +348,48 @@
           </div>
 
 
-         
+
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+          <button type="submit" class="btn btn-primary">Guardar</button>
+        </div>
+      </form>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+
+<!-- /.modal -->
+
+<!-- /.modal -->
+
+<div class="modal fade" id="modal-edit" >
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <form [formGroup]="formulario_terminado" (ngSubmit)="onSubmitTermiando()">
+        <div class="modal-header">
+          <h4 class="modal-title">Editar Tarea</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!--<input type="hidden" formControlName="tasksid" [value]="itemId" />-->
+          <div class="input-group mb-3" >
+            <input type="text" required id="title" formControlName="title" class="form-control" placeholder="Titulo">
+
+          </div>
+
+
+          <div class="input-group mb-3" >
+            <textarea placeholder="Subtitulo"  required id="subtitle" formControlName="subtitle" class="form-control" > </textarea>
+
+          </div>
+
+
+
         </div>
         <div class="modal-footer justify-content-between">
           <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>

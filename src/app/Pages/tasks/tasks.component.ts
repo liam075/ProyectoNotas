@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { CanActivate, Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule, Form } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+declare var $: any;
 
 @Component({
   selector: 'app-tasks',
@@ -10,13 +11,13 @@ import { CommonModule } from '@angular/common';
   templateUrl: './tasks.component.html',
   styleUrl: './tasks.component.css'
 })
-export class TasksComponent implements OnInit{
+export class TasksComponent implements OnInit,AfterViewInit {
   formulario_lista: FormGroup;
   formulario_hacer : FormGroup;
   formulario_progreso : FormGroup;
   formulario_terminado : FormGroup;
   itemId: number | null = null; // Variable para guardar el ID
-  isModalVisible = true;
+  isModalVisible = false;
   id : number;
   lista_tareas :any = [];
 
@@ -47,26 +48,59 @@ export class TasksComponent implements OnInit{
     let params  = this.activatedroute.snapshot.params;
     this.id = params['id'];
 
-    if (localStorage.getItem('tareas')) {
-      let tareasGuardado: any = localStorage.getItem('tareas');
-      let tareas = JSON.parse(tareasGuardado);
-      let tarea_filtrada = tareas.find((tarea : any) => tarea.id === this.id);
-      if(tarea_filtrada){
-        console.log(" Tarea Filtrada " , tarea_filtrada)
-       // this.formulario_lista.patchValue({title: tarea_filtrada.title, subtitle: tarea_filtrada.subtitle });
-      }
-    }
+
   }
 
 
   ngOnInit(): void {
+    if (localStorage.getItem('tareas')) {
 
+      let tareasGuardado: any = localStorage.getItem('tareas');
+      let tareas = JSON.parse(tareasGuardado);
+      let tarea_filtrada = tareas.find((tarea : any) => tarea.tablero_id === this.id);
+      console.log(" Tarea Filtrada " , tarea_filtrada);
+      // if(tarea_filtrada){
+      //   console.log(" Tarea Filtrada " , tarea_filtrada)
+      //  // this.formulario_lista.patchValue({title: tarea_filtrada.title, subtitle: tarea_filtrada.subtitle });
+      // }
+    }
+  }
+
+  ngAfterViewInit() {
+    // Usamos jQuery para inicializar cualquier cosa relacionada con el modal
+    this.setupModal();
+  }
+
+  setupModal() {
+   // var Swal:any;
+
+    // Abre el modal cuando se hace clic en el botón
+    $('#openModal').click(() => {
+      console.log(" Intentando Abrir Modal");
+      $('#modal-edit').modal('show');; // Usamos fadeIn para mostrar el modal con una animación
+    });
+
+    // // Cierra el modal cuando se hace clic en el fondo o el botón de cerrar
+    // $('#myModal').click((event) => {
+    //   if ($(event.target).is('#myModal')) {  // Verificamos si el clic es en el fondo (no en el contenido)
+    //     $('#myModal').fadeOut();  // Usamos fadeOut para cerrar el modal con una animación
+    //   }
+    // });
+
+    // $('#closeModal').click(() => {
+    //   $('#myModal').fadeOut(); // Cierra el modal cuando se hace clic en el botón de cerrar
+    // });
   }
 
   openModal(id:number) {
     console.log(" Open Modal ",id);
     //this.itemId = id;
     this.isModalVisible = true;
+    console.log(" isModalVisible ", this.isModalVisible)
+  }
+
+  closeModal() {
+    this.isModalVisible = false;
   }
 
   onSubmitLista() {
