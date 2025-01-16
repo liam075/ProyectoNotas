@@ -90,6 +90,7 @@ export class TasksComponent implements OnInit {
       this.lista_hacer = lista_hacer;
       this.lista_progreso = lista_progreso;
       this.lista_terminado = lista_terminado;
+      console.log( " Lista Terminado ", this.lista_terminado);
 
 
 
@@ -211,11 +212,17 @@ export class TasksComponent implements OnInit {
 
   }
 
-  buscarposiciontarea(lista_tareas : any,id : number){
+  buscarposiciontarea(lista_tareas : any,id : number) : any {
+    let indice : number = 0 ;
     if (lista_tareas.length > 0) {
-      let posicion = lista_tareas.findIndex((tarea: any) => tarea.id === id);
-      return posicion;
+      for (let i=0 ; i < lista_tareas.length ; i++) {
+        if (lista_tareas[i].id === id) {
+          indice = i;
+        }
+      }
+      
     }
+    return indice; 
   }
   onSubmitEdit() {
    let id=  $('#taskid').val();
@@ -226,14 +233,14 @@ export class TasksComponent implements OnInit {
         let tareasGuardado: any = localStorage.getItem('tareas');
         lista_tareas = JSON.parse(tareasGuardado);
         console.log(" formulario de tareas a actualizar -- ", lista_tareas[0].title);
-        let posicion = this.buscarposiciontarea(lista_tareas,id);
+        let posicion : any = this.buscarposiciontarea(lista_tareas,id);
         console.log(" Posiscion ", posicion);
-        lista_tareas[posicion].title = formulario.title;
-        lista_tareas[posicion].subtitle = formulario.subtitle;
-        lista_tareas[posicion].categoria_id = formulario.category_id;
+        lista_tareas[posicion].title = formulario.Edit_title;
+        lista_tareas[posicion].subtitle = formulario.Edit_subtitle;
+        lista_tareas[posicion].categoria_id = Number(formulario.Edit_category_id);
         console.log(" Lista Tarea Actualizada ", lista_tareas);
-        // localStorage.setItem('tareas', JSON.stringify(lista_tareas));
-        // location.reload();
+        localStorage.setItem('tareas', JSON.stringify(lista_tareas));
+        location.reload();
 
       } 
 
