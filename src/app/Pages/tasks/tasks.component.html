@@ -32,9 +32,9 @@
                 <div class="card-header">
                   <h5 class="card-title">{{item.title}}</h5>
                   <div class="card-tools">
-                    <a href="#" class="btn btn-tool btn-link">#{{item.id}}</a>
-                    <a href="#" class="btn btn-tool">
-                      <i class="fas fa-pen"></i>
+                    <a  (click)="editModal(item.id)" class="btn btn-tool btn-link">#{{item.id}}</a>
+                    <a href="#"  class="btn btn-tool">
+                      <i class="fas fa-trash"></i>
                     </a>
                   </div>
                 </div>
@@ -152,7 +152,7 @@
                 <div class="card-header">
                   <h5 class="card-title">{{item.title}}</h5>
                   <div class="card-tools">
-                    <a href="#" class="btn btn-tool btn-link">#{{item.id}}</a>
+                    <a (click)="editModal(item.id)" class="btn btn-tool btn-link">#{{item.id}}</a>
                     <a href="#" class="btn btn-tool">
                       <i class="fas fa-pen"></i>
                     </a>
@@ -198,7 +198,7 @@
                 <div class="card-header">
                   <h5 class="card-title">{{item.title}}</h5>
                   <div class="card-tools">
-                    <a href="#" class="btn btn-tool btn-link">#{{item.id}}</a>
+                    <a (click)="editModal(item.id)" class="btn btn-tool btn-link">#{{item.id}}</a>
                     <a href="#" class="btn btn-tool">
                       <i class="fas fa-pen"></i>
                     </a>
@@ -251,7 +251,7 @@
                 <div class="card-header">
                   <h5 class="card-title">{{item.title}}</h5>
                   <div class="card-tools">
-                    <a href="#" class="btn btn-tool btn-link">#{{item.id}}</a>
+                    <a (click)="editModal(item.id)" class="btn btn-tool btn-link">#{{item.id}}</a>
                     <a href="#" class="btn btn-tool">
                       <i class="fas fa-pen"></i>
                     </a>
@@ -289,7 +289,7 @@
 
 <!-- /.modal -->
 
-  <div class="modal fade" id="modal-lista" >
+  <div class="modal fade" id="modal-create" >
     <div class="modal-dialog modal-xl">
       <div class="modal-content">
         <form [formGroup]="formulario_lista" (ngSubmit)="onSubmitLista()">
@@ -302,12 +302,14 @@
           <div class="modal-body">
             <input type="hidden" id="category_id" formControlName="category_id" />
             <div class="input-group mb-3" >
+              <label for="exampleSelectBorder">Titulo</label>
               <input type="text" required id="title" formControlName="title" class="form-control" placeholder="Titulo">
 
             </div>
 
 
             <div class="input-group mb-3" >
+              <label for="exampleSelectBorder">Subtitulo</label>
               <textarea placeholder="Subtitulo"  required id="subtitle" formControlName="subtitle" class="form-control" > </textarea>
 
             </div>
@@ -325,6 +327,67 @@
     </div>
     <!-- /.modal-dialog -->
   </div>
+
+<!-- /.modal -->
+
+<!-- /.modal -->
+
+<div class="modal fade" id="modal-edit" >
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <form [formGroup]="formulario_edit" (ngSubmit)="onSubmitEdit()">
+        <div class="modal-header">
+          <h4 class="modal-title">Editar Tarea</h4> <!--data-dismiss="modal" aria-label="Close"-->
+          <button type="button" class="close" (click)="closeModalEdit()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" id="taskid" formControlName="Edit_taskid" />
+          <div class="mb-3" >
+            
+              <label class="form-label">Titulo</label>
+              <input type="text" required id="titleEdit" formControlName="Edit_title" class="form-control" placeholder="Titulo">
+            
+
+          </div>
+
+
+          <div class=" mb-3" >
+            
+
+              <label class="form-label">Subtitulo</label>
+              <textarea placeholder="Subtitulo"  required id="subtitleEdit" formControlName="Edit_subtitle" class="form-control" > </textarea>
+           
+
+          </div>
+
+          <div class="input-group mb-3" >
+            <div class="form-group">
+              <label for="exampleSelectBorder">Categoria</label>
+              <select formControlName="Edit_category_id" class="form-control select2" id="exampleSelectBorder" [(ngModel)]="categoriaSeleccionada" >
+                <option selected disabled>Seleccione una categoria</option>
+                @for(item of lista_categoria; track item.id) {
+                  <option [value]="item.id" >{{item.name}}</option>
+                }
+              </select>
+            </div>
+
+          </div>
+
+
+
+        </div>
+        <div class="modal-footer justify-content-between"> <!--data-dismiss="modal"-->
+          <button type="button" class="btn btn-default" (click)="closeModalEdit()">Cerrar</button>
+          <button type="submit" class="btn btn-primary">Guardar</button>
+        </div>
+      </form>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
 
 <!-- /.modal -->
 
