@@ -33,7 +33,7 @@
                   <h5 class="card-title">{{item.title}}</h5>
                   <div class="card-tools">
                     <a  (click)="editModal(item.id)" class="btn btn-tool btn-link">#{{item.id}}</a>
-                    <a href="#"  class="btn btn-tool">
+                    <a (click)="deleteTask(item.id)"  class="btn btn-tool">
                       <i class="fas fa-trash"></i>
                     </a>
                   </div>
@@ -68,7 +68,7 @@
                   <h5 class="card-title">{{item.title}}</h5>
                   <div class="card-tools">
                     <a (click)="editModal(item.id)" class="btn btn-tool btn-link">#{{item.id}}</a>
-                    <a href="#" class="btn btn-tool">
+                    <a (click)="deleteTask(item.id)" class="btn btn-tool">
                       <i class="fas fa-trash"></i>
                     </a>
                   </div>
@@ -103,7 +103,7 @@
                   <h5 class="card-title">{{item.title}}</h5>
                   <div class="card-tools">
                     <a (click)="editModal(item.id)" class="btn btn-tool btn-link">#{{item.id}}</a>
-                    <a href="#" class="btn btn-tool">
+                    <a (click)="deleteTask(item.id)" class="btn btn-tool">
                       <i class="fas fa-trash"></i>
                     </a>
                   </div>
@@ -137,7 +137,7 @@
                   <h5 class="card-title">{{item.title}}</h5>
                   <div class="card-tools">
                     <a (click)="editModal(item.id)" class="btn btn-tool btn-link">#{{item.id}}</a>
-                    <a href="#" class="btn btn-tool">
+                    <a (click)="deleteTask(item.id)" class="btn btn-tool">
                       <i class="fas fa-trash"></i>
                     </a>
                   </div>

@@ -168,8 +168,18 @@ export class TasksComponent implements OnInit {
   }
 
   deleteTask(id:number) {
+    let lista_tareas = [];
     if (confirm("Quieres eliminar este registro?")) {
-
+      if (this.ValidarTareas()){
+        let tareasGuardado: any = localStorage.getItem('tareas');
+        lista_tareas = JSON.parse(tareasGuardado);
+        const indice = lista_tareas.findIndex((item : any) => item.id === id); 
+        if (indice !== -1) {
+          lista_tareas.splice(indice, 1); 
+          localStorage.setItem('tareas', JSON.stringify(lista_tareas));
+          location.reload();
+        } 
+      }
     }
   }
 
