@@ -239,7 +239,7 @@
           <div class="input-group mb-3" >
             <div class="form-group">
               <label for="exampleSelectBorder">Categoria</label>
-              <select formControlName="Edit_category_id" class="form-control select2" id="categoryEdit" [(ngModel)]="categoriaSeleccionada" >
+              <select id="categoryEdit" formControlName="Edit_category_id" class="form-control select2"  [(ngModel)]="categoriaSeleccionada" >
                 <option selected disabled>Seleccione una categoria</option>
                 @for(item of lista_categoria; track item.id) {
                   <option [value]="item.id" >{{item.name}}</option>

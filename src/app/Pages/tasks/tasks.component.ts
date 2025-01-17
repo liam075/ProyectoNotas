@@ -230,29 +230,35 @@ export class TasksComponent implements OnInit {
 
   }
 
-  buscarposiciontarea(lista_tareas : any,id : number) : any {
-    let indice : number = 0 ;
-    if (lista_tareas.length > 0) {
-      for (let i=0 ; i < lista_tareas.length ; i++) {
-        if (lista_tareas[i].id === id) {
-          indice = i;
-        }
-      }
+  // buscarPosicionTarea(lista_tareas: any[], id: number): number | null {
+  //   if (lista_tareas.length > 0) {
+  //       for (let i = 0; i < lista_tareas.length; i++) {
+  //           if (lista_tareas[i].id === id) {
+  //               return i; // Retorna el índice si encuentra la tarea
+  //           }
+  //       }
+  //   }
+  //   return null; // Si no encuentra la tarea o la lista está vacía, retorna null
+  // }
 
-    }
-    return indice;
+  buscarPosicionTarea(lista_tareas: any[], id: number): number | null {
+    const indice = lista_tareas.findIndex(tarea => tarea.id === id);
+    return indice !== -1 ? indice : null;
   }
+
   onSubmitEdit() {
-   let id=  $('#taskid').val();
+    let id=  Number($('#taskid').val());
+    console.log(" Id a Editar ", id);
     let lista_tareas : any = [];
     if (this.formulario_edit.valid) {
       let formulario = this.formulario_edit.value;
       if (this.ValidarTareas()) {
         let tareasGuardado: any = localStorage.getItem('tareas');
         lista_tareas = JSON.parse(tareasGuardado);
-        console.log(" formulario de tareas a actualizar -- ", lista_tareas[0].title);
-        let posicion : any = this.buscarposiciontarea(lista_tareas,id);
+        console.log(" formulario de tareas a actualizar -- ", lista_tareas);
+        let posicion : any = this.buscarPosicionTarea(lista_tareas,id);
         console.log(" Posiscion ", posicion);
+        console.log(" Title Edit : ",$("#titleEdit").val() ," ", $("#subtitleEdit").val()," ", Number($("#categoryEdit").val()) )
         lista_tareas[posicion].title = $("#titleEdit").val();
         lista_tareas[posicion].subtitle = $("#subtitleEdit").val();
         lista_tareas[posicion].categoria_id = Number($("#categoryEdit").val());
