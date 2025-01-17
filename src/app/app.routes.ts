@@ -8,7 +8,7 @@ import { TasksComponent } from './Pages/tasks/tasks.component';
 import { UsersComponent } from './Pages/users/users.component';
 
 export const routes: Routes = [
-  { path : '', component : RegisterComponent },
+  { path : '', component : LoginComponent },
   { path : 'login', component : LoginComponent} ,
   { path : 'register', component : RegisterComponent},
   { path : 'tablero', component:PagesComponent, children :[

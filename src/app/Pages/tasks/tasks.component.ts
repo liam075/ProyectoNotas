@@ -37,8 +37,8 @@ export class TasksComponent implements OnInit {
     this.formulario_edit = this.fb.group({
       Edit_taskid : [''],
       Edit_category_id : [''],
-      Edit_title: ['', [Validators.required]],
-      Edit_subtitle: ['', [Validators.required]],
+      Edit_title: [''],
+      Edit_subtitle: [''],
     });
 
 
@@ -46,7 +46,7 @@ export class TasksComponent implements OnInit {
     this.id = params['id'];
     this.category_id = 1;
 
-    
+
 
   }
 
@@ -99,7 +99,7 @@ export class TasksComponent implements OnInit {
 
 
   ngOnInit(): void {
-    if (localStorage.getItem('tareas')) {
+    if (this.ValidarTareas()) {
 
       let tareasGuardado: any = localStorage.getItem('tareas');
       let tareas = JSON.parse(tareasGuardado);
@@ -115,7 +115,7 @@ export class TasksComponent implements OnInit {
       //  // this.formulario_lista.patchValue({title: tarea_filtrada.title, subtitle: tarea_filtrada.subtitle });
       // }
 
-      if (localStorage.getItem('lista_categorias')) {
+      if (this.ValidarCategorias()) {
         let categoriaGuardado: any = localStorage.getItem('lista_categorias');
         this.lista_categoria = JSON.parse(categoriaGuardado);
         console.log(" lista Categoria " , this.lista_categoria);
@@ -125,16 +125,16 @@ export class TasksComponent implements OnInit {
     }
   }
 
-  
+
 
 
 
   editModal(id : number) {
-  
-    
+
+
     console.log(" Intentando Abrir Modal Edit ");
-    $('#modal-edit').modal('show'); 
-    $('#taskid').val(id); 
+    $('#modal-edit').modal('show');
+    $('#taskid').val(id);
     let tareaFiltrada = this.lista_completa_tareas.filter((tarea : any )=> tarea.id === id);
     console.log("tarea filtrada buscada editar ",tareaFiltrada);
     $('#titleEdit').val(tareaFiltrada[0]['title']);
@@ -143,10 +143,10 @@ export class TasksComponent implements OnInit {
 
 
 
-    
+
 
     // // Cierra el modal cuando se hace clic en el fondo o el botón de cerrar
-  
+
   }
 
   openModal(id:number) {
@@ -168,15 +168,33 @@ export class TasksComponent implements OnInit {
   }
 
   deleteTask(id:number) {
+    if (confirm("Quieres eliminar este registro?")) {
 
+    }
   }
 
+  ValidarTareas() {
+    if (localStorage.getItem('tareas')) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+
+  ValidarCategorias() {
+      if (localStorage.getItem('lista_categorias')) {
+      return true;
+    } else {
+      return false;
+    }
+  }
   onSubmitLista() {
     let id_tasks = 1;
     let lista_tareas : any = [];
     if (this.formulario_lista.valid) {
       let tablero = this.formulario_lista.value;
-      if (localStorage.getItem('tareas')) {
+      if (this.ValidarTareas()) {
         let tareasGuardado: any = localStorage.getItem('tareas');
         lista_tareas = JSON.parse(tareasGuardado);
         let tarea_json = {
@@ -220,38 +238,39 @@ export class TasksComponent implements OnInit {
           indice = i;
         }
       }
-      
+
     }
-    return indice; 
+    return indice;
   }
   onSubmitEdit() {
    let id=  $('#taskid').val();
     let lista_tareas : any = [];
     if (this.formulario_edit.valid) {
       let formulario = this.formulario_edit.value;
-      if (localStorage.getItem('tareas')) {
+      if (this.ValidarTareas()) {
         let tareasGuardado: any = localStorage.getItem('tareas');
         lista_tareas = JSON.parse(tareasGuardado);
         console.log(" formulario de tareas a actualizar -- ", lista_tareas[0].title);
         let posicion : any = this.buscarposiciontarea(lista_tareas,id);
         console.log(" Posiscion ", posicion);
-        lista_tareas[posicion].title = formulario.Edit_title;
-        lista_tareas[posicion].subtitle = formulario.Edit_subtitle;
-        lista_tareas[posicion].categoria_id = Number(formulario.Edit_category_id);
+        lista_tareas[posicion].title = $("#titleEdit").val();
+        lista_tareas[posicion].subtitle = $("#subtitleEdit").val();
+        lista_tareas[posicion].categoria_id = Number($("#categoryEdit").val());
         console.log(" Lista Tarea Actualizada ", lista_tareas);
         localStorage.setItem('tareas', JSON.stringify(lista_tareas));
         location.reload();
 
-      } 
-
-
+      }
     } else {
       alert(" Por favor introduzca todos los Datos correspondientes ");
     }
+
+
+
   }
-  
 
- 
 
- 
+
+
+
 }

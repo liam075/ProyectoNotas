@@ -27,7 +27,7 @@
         <div class="card-body">
           @if(lista_tareas.length > 0) {
             @for(item of lista_tareas; track item.id) {
-              
+
               <div class="card card-light card-outline">
                 <div class="card-header">
                   <h5 class="card-title">{{item.title}}</h5>
@@ -46,92 +46,7 @@
               </div>
             }
           }
-          <!--
-          <div class="card card-info card-outline">
-            <div class="card-header">
-              <h5 class="card-title">Create Labels</h5>
-              <div class="card-tools">
-                <a href="#" class="btn btn-tool btn-link">#3</a>
-                <a href="#" class="btn btn-tool">
-                  <i class="fas fa-pen"></i>
-                </a>
-              </div>
-            </div>
-            <div class="card-body">
-              <div class="custom-control custom-checkbox">
-                <input class="custom-control-input" type="checkbox" id="customCheckbox1" disabled>
-                <label for="customCheckbox1" class="custom-control-label">Bug</label>
-              </div>
-              <div class="custom-control custom-checkbox">
-                <input class="custom-control-input" type="checkbox" id="customCheckbox2" disabled>
-                <label for="customCheckbox2" class="custom-control-label">Feature</label>
-              </div>
-              <div class="custom-control custom-checkbox">
-                <input class="custom-control-input" type="checkbox" id="customCheckbox3" disabled>
-                <label for="customCheckbox3" class="custom-control-label">Enhancement</label>
-              </div>
-              <div class="custom-control custom-checkbox">
-                <input class="custom-control-input" type="checkbox" id="customCheckbox4" disabled>
-                <label for="customCheckbox4" class="custom-control-label">Documentation</label>
-              </div>
-              <div class="custom-control custom-checkbox">
-                <input class="custom-control-input" type="checkbox" id="customCheckbox5" disabled>
-                <label for="customCheckbox5" class="custom-control-label">Examples</label>
-              </div>
-            </div>
-          </div>
-          <div class="card card-primary card-outline">
-            <div class="card-header">
-              <h5 class="card-title">Create Issue template</h5>
-              <div class="card-tools">
-                <a href="#" class="btn btn-tool btn-link">#4</a>
-                <a href="#" class="btn btn-tool">
-                  <i class="fas fa-pen"></i>
-                </a>
-              </div>
-            </div>
-            <div class="card-body">
-              <div class="custom-control custom-checkbox">
-                <input class="custom-control-input" type="checkbox" id="customCheckbox1_1" disabled>
-                <label for="customCheckbox1_1" class="custom-control-label">Bug Report</label>
-              </div>
-              <div class="custom-control custom-checkbox">
-                <input class="custom-control-input" type="checkbox" id="customCheckbox1_2" disabled>
-                <label for="customCheckbox1_2" class="custom-control-label">Feature Request</label>
-              </div>
-            </div>
-          </div>
-          <div class="card card-primary card-outline">
-            <div class="card-header">
-              <h5 class="card-title">Create PR template</h5>
-              <div class="card-tools">
-                <a href="#" class="btn btn-tool btn-link">#6</a>
-                <a href="#" class="btn btn-tool">
-                  <i class="fas fa-pen"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="card card-light card-outline">
-            <div class="card-header">
-              <h5 class="card-title">Create Actions</h5>
-              <div class="card-tools">
-                <a href="#" class="btn btn-tool btn-link">#7</a>
-                <a href="#" class="btn btn-tool">
-                  <i class="fas fa-pen"></i>
-                </a>
-              </div>
 
-            </div>
-            <div class="card-body">
-              <p>
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-                Aenean commodo ligula eget dolor. Aenean massa.
-                Cum sociis natoque penatibus et magnis dis parturient montes,
-                nascetur ridiculus mus.
-              </p>
-            </div>
-          </div>-->
         </div>
         <div class="card-header header-footer-new">
           <!--data-toggle="modal" data-target="#modal-lista"-->
@@ -147,14 +62,14 @@
         <div class="card-body">
           @if(lista_hacer.length > 0) {
             @for(item of lista_hacer; track item.id) {
-              
+
               <div class="card card-light card-outline">
                 <div class="card-header">
                   <h5 class="card-title">{{item.title}}</h5>
                   <div class="card-tools">
                     <a (click)="editModal(item.id)" class="btn btn-tool btn-link">#{{item.id}}</a>
                     <a href="#" class="btn btn-tool">
-                      <i class="fas fa-pen"></i>
+                      <i class="fas fa-trash"></i>
                     </a>
                   </div>
                 </div>
@@ -166,7 +81,7 @@
               </div>
             }
           }
-   
+
         </div>
         <div class="card-header header-footer-new" >
           <!--id="openModal" data-toggle="modal" data-target="#modal-hacer"-->
@@ -182,14 +97,14 @@
         <div class="card-body">
           @if(lista_progreso.length > 0) {
             @for(item of lista_progreso; track item.id) {
-              
+
               <div class="card card-light card-outline">
                 <div class="card-header">
                   <h5 class="card-title">{{item.title}}</h5>
                   <div class="card-tools">
                     <a (click)="editModal(item.id)" class="btn btn-tool btn-link">#{{item.id}}</a>
                     <a href="#" class="btn btn-tool">
-                      <i class="fas fa-pen"></i>
+                      <i class="fas fa-trash"></i>
                     </a>
                   </div>
                 </div>
@@ -201,7 +116,7 @@
               </div>
             }
           }
-    
+
         </div> <!--data-toggle="modal" data-target="#modal-progreso"-->
         <div class="card-header bg-info header-footer-new" >
           <button class="btn btn-block btn-info btn-sm" (click)="openModal(3)" > Agregar Tarjeta</button>
@@ -216,14 +131,14 @@
         <div class="card-body">
           @if(lista_terminado.length > 0) {
             @for(item of lista_terminado; track item.id) {
-              
+
               <div class="card card-light card-outline">
                 <div class="card-header">
                   <h5 class="card-title">{{item.title}}</h5>
                   <div class="card-tools">
                     <a (click)="editModal(item.id)" class="btn btn-tool btn-link">#{{item.id}}</a>
                     <a href="#" class="btn btn-tool">
-                      <i class="fas fa-pen"></i>
+                      <i class="fas fa-trash"></i>
                     </a>
                   </div>
                 </div>
@@ -235,18 +150,7 @@
               </div>
             }
           }
-          <!--
-          <div class="card card-primary card-outline">
-            <div class="card-header">
-              <h5 class="card-title">Create repo</h5>
-              <div class="card-tools">
-                <a href="#" class="btn btn-tool btn-link">#1</a>
-                <a href="#" class="btn btn-tool">
-                  <i class="fas fa-pen"></i>
-                </a>
-              </div>
-            </div>
-          </div>-->
+
         </div> <!--data-toggle="modal" data-target="#modal-terminado"-->
         <div class="card-header header-footer-new">
           <button class="btn btn-block btn-success btn-sm" (click)="openModal(4)" > Agregar Tarjeta</button>
@@ -271,14 +175,14 @@
           </div>
           <div class="modal-body">
             <input type="hidden" id="category_id" formControlName="category_id" />
-            <div class="input-group mb-3" >
+            <div class="mb-3" >
               <label for="exampleSelectBorder">Titulo</label>
               <input type="text" required id="title" formControlName="title" class="form-control" placeholder="Titulo">
 
             </div>
 
 
-            <div class="input-group mb-3" >
+            <div class="mb-3" >
               <label for="exampleSelectBorder">Subtitulo</label>
               <textarea placeholder="Subtitulo"  required id="subtitle" formControlName="subtitle" class="form-control" > </textarea>
 
@@ -315,27 +219,27 @@
         <div class="modal-body">
           <input type="hidden" id="taskid" formControlName="Edit_taskid" />
           <div class="mb-3" >
-            
+
               <label class="form-label">Titulo</label>
-              <input type="text" required id="titleEdit" formControlName="Edit_title" class="form-control" placeholder="Titulo">
-            
+              <input type="text"  id="titleEdit" formControlName="Edit_title" class="form-control" placeholder="Titulo">
+
 
           </div>
 
 
           <div class=" mb-3" >
-            
+
 
               <label class="form-label">Subtitulo</label>
-              <textarea placeholder="Subtitulo"  required id="subtitleEdit" formControlName="Edit_subtitle" class="form-control" > </textarea>
-           
+              <textarea placeholder="Subtitulo"   id="subtitleEdit" formControlName="Edit_subtitle" class="form-control" > </textarea>
+
 
           </div>
 
           <div class="input-group mb-3" >
             <div class="form-group">
               <label for="exampleSelectBorder">Categoria</label>
-              <select formControlName="Edit_category_id" class="form-control select2" id="exampleSelectBorder" [(ngModel)]="categoriaSeleccionada" >
+              <select formControlName="Edit_category_id" class="form-control select2" id="categoryEdit" [(ngModel)]="categoriaSeleccionada" >
                 <option selected disabled>Seleccione una categoria</option>
                 @for(item of lista_categoria; track item.id) {
                   <option [value]="item.id" >{{item.name}}</option>
