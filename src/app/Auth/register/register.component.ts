@@ -14,6 +14,7 @@ export class RegisterComponent implements OnInit {
   formulario: FormGroup;
 
   constructor(private fb: FormBuilder,private router: Router) {
+    localStorage.removeItem('pageReloaded');
     // Inicializamos el formulario con los controles
     this.formulario = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],

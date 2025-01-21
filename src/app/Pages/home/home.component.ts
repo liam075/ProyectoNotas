@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
         let tablero : any= localStorage.getItem('tablero');
         this.lista_tableros = JSON.parse(tablero);
         console.log("------------- lista Tablero ",this.lista_tableros);
-    } 
+    }
 
     this.categoria_tareas = [
       {
@@ -51,7 +51,7 @@ export class HomeComponent implements OnInit {
     localStorage.setItem('lista_categorias', JSON.stringify(this.categoria_tareas));
 
 
-    
+
 
   }
   ngOnInit(): void {
@@ -61,10 +61,10 @@ export class HomeComponent implements OnInit {
       this.recargar = true
       // Marca la página como recargada
       localStorage.setItem('pageReloaded', `${this.recargar}`);
-  } else {
+    } else {
       // Si ya fue recargada, muestra un mensaje o realiza otra acción
       console.log("La página ya fue recargada.");
-  }
+    }
   }
 
   onSubmit() {
@@ -72,7 +72,7 @@ export class HomeComponent implements OnInit {
     let lista_tablero: any = [];
     if (this.formulario.valid) {
       let tablero = this.formulario.value;
-      if (localStorage.getItem('tablero')) { 
+      if (localStorage.getItem('tablero')) {
         let tableroGuardado: any = localStorage.getItem('tablero');
         lista_tablero = JSON.parse(tableroGuardado);
         let tablero_json = {
@@ -97,7 +97,7 @@ export class HomeComponent implements OnInit {
         localStorage.setItem('tablero', JSON.stringify(lista_tablero));
         location.reload();
       }
-      
+
     } else {
       alert(" Introduzca Todos los Datos Correspondiente ");
     }
@@ -110,13 +110,13 @@ export class HomeComponent implements OnInit {
     if (this.formulario.valid) {
       let user = this.formulario.value;
 
-      
+
       if (localStorage.getItem('users')) {
         console.log("Existen Usuarios");
         let usuarioGuardado: any = localStorage.getItem('users');
         lista_usuarios = JSON.parse(usuarioGuardado);
 
-      
+
         const correoExistente = lista_usuarios.some((usuario: any) => usuario.email === user.email);
 
         if (correoExistente) {

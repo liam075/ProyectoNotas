@@ -188,25 +188,28 @@
             </p>
           </a>
         </li>
-        <li class="nav-item">
-          <a href="/tablero/tareas/1" class="nav-link" style="color:white">
-            <i class="nav-icon fas fa-columns"></i>
-            <p>
-              Tareas
-            </p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="/tablero/users" class="nav-link" style="color:white">
-            <i class="nav-icon fas fa-users"></i>
-            <p>
-              Miembros
-            </p>
-          </a>
-        </li>
+        @if (mostrar_tareas) {
+
+          <li class="nav-item">
+            <a href="/tablero/tareas/1" class="nav-link" style="color:white">
+              <i class="nav-icon fas fa-columns"></i>
+              <p>
+                Tareas
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/tablero/users" class="nav-link" style="color:white">
+              <i class="nav-icon fas fa-users"></i>
+              <p>
+                Miembros
+              </p>
+            </a>
+          </li>
+        }
 
         <li class="nav-item">
-          <a href="#" class="nav-link active" style="background-color: rgba(231, 18, 18, 0.897); color:white">
+          <a (click)="logout(); setActive(); $event.preventDefault()" href="#" class="nav-link active" style="background-color: rgba(231, 18, 18, 0.897); color:white">
             <i class="nav-icon fas fa-door-closed"></i>
             <p>
               Cerrar Sesion

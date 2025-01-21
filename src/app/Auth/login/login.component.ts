@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+declare var $: any;
+
+// Declara la función global definida en index.html
+declare function UsuarioLogueadoCorrectamento(): void;
 @Component({
   selector: 'app-login',
   standalone: true, // Indica que es un componente standalone
@@ -14,6 +18,7 @@ export class LoginComponent implements OnInit {
   formulario: FormGroup;
   lista_usuarios : any = [];
   constructor(private fb: FormBuilder,private router: Router) {
+    localStorage.removeItem('pageReloaded');
     // Inicializamos el formulario con los controles
     this.formulario = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -26,6 +31,7 @@ export class LoginComponent implements OnInit {
       this.lista_usuarios = JSON.parse(usuarioGuardado);
     } else {
       alert("Por favor Registrese ");
+      this.router.navigate(['/register']);
     }
   }
 
@@ -44,7 +50,11 @@ export class LoginComponent implements OnInit {
       if (usuarioBuscado) {
         console.log('Usuario encontrado', usuarioBuscado);
         localStorage.setItem('usuario_logueado', JSON.stringify(usuarioBuscado));
-        this.router.navigate(['/tablero']);
+        UsuarioLogueadoCorrectamento();
+        setTimeout(() => {
+          this.router.navigate(['/tablero']);
+        }, 1000);
+
       } else {
         alert('Usuario o contraseña incorrectos');
       }

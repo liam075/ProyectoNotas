@@ -80,6 +80,28 @@
 
   <!-- Page specific script -->
 <script>
+  var Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000
+  });
+
+  function UsuarioLogueadoCorrectamento() {
+    Toast.fire({
+      icon: 'success',
+      title: 'Usuario logueado correctamente'
+    })
+  }
+
+  function CerrarSesion() { 
+    Toast.fire({
+      icon: 'success',
+      title: 'Sesion cerrada correctamente'
+    })
+  }
+
+
   $(function() {
     var Toast = Swal.mixin({
       toast: true,
