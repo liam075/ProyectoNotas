@@ -3,6 +3,8 @@ import { CanActivate, Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
+declare function CorreoRepetido(): void;
+declare function RegistradoCorrectamente(): void;
 @Component({
   selector: 'app-register',
   standalone: true, // Indica que es un componente standalone
@@ -50,7 +52,8 @@ export class RegisterComponent implements OnInit {
         const correoExistente = lista_usuarios.some((usuario: any) => usuario.email === user.email);
 
         if (correoExistente) {
-          alert("Este correo ya está registrado.");
+         // alert("Este correo ya está registrado.");
+          CorreoRepetido();
           console.log('Correo repetido');
           return; // Detener la ejecución si el correo está repetido
         }
@@ -75,9 +78,10 @@ export class RegisterComponent implements OnInit {
         localStorage.setItem('users', JSON.stringify(lista_usuarios));
         console.log('Formulario Enviado:', lista_usuarios);
       }
-
-      this.router.navigate(['/login']);
-
+      RegistradoCorrectamente();
+      setTimeout(() => {
+        this.router.navigate(['/login']);
+      }, 1000);
     } else {
       alert("Por favor complete el formulario.");
       console.log('Formulario no válido');

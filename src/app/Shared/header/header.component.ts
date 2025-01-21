@@ -10,7 +10,6 @@ declare function CerrarSesion(): void;
 export class HeaderComponent {
   nombre_usuario = "";
   mostrar_tareas = false;
-  isActive = false;
   constructor(private router: Router) {
     if (localStorage.getItem('usuario_logueado')) {
       let usuario : any = localStorage.getItem('usuario_logueado');
@@ -29,21 +28,11 @@ export class HeaderComponent {
       this.router.navigate(['/register']);
     }
 
-    if (localStorage.getItem('tablero')) {
-      console.log("Existen tableros");
-      this.mostrar_tareas = true;
-    } else {
-      this.mostrar_tareas = false;
-      alert("Por favor cree un tablero ");
-    //  this.router.navigate(['/tablero']);
-    }
+    
   }
 
 
 
-  setActive() {
-    this.isActive = !this.isActive;
-  }
 
   logout() {
     localStorage.removeItem('usuario_logueado');

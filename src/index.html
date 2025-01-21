@@ -90,16 +90,52 @@
   function UsuarioLogueadoCorrectamento() {
     Toast.fire({
       icon: 'success',
-      title: 'Usuario logueado correctamente'
+      title: 'Usuario Logueado Correctamente'
     })
   }
 
-  function CerrarSesion() { 
+  function UsuarioError() {
+    Toast.fire({
+      icon: 'error',
+      title: 'Usuario o contraseña incorrectos'
+    })
+  }
+
+  function CerrarSesion() {
     Toast.fire({
       icon: 'success',
       title: 'Sesion cerrada correctamente'
     })
   }
+
+  function CorreoRepetido() {
+    Toast.fire({
+      icon: 'error',
+      title: 'Este correo ya está registrado, Por favor Introduzca Otro'
+    })
+  }
+
+  function RegistradoCorrectamente() {
+    Toast.fire({
+      icon: 'success',
+      title: 'Usuario Registrado Correctamente'
+    })
+  }
+
+  function Registrarse() {
+    Toast.fire({
+      icon: 'error',
+      title: 'Por favor Registrese'
+    })
+  }
+
+  function InfoCreaTablero() {
+    Toast.fire({
+      icon: 'info',
+      title: 'Crea un tablero para empezar a trabajar'
+    })
+  }
+
 
 
   $(function() {

@@ -6,6 +6,8 @@ declare var $: any;
 
 // Declara la función global definida en index.html
 declare function UsuarioLogueadoCorrectamento(): void;
+declare function Registrarse(): void;
+declare function UsuarioError(): void;
 @Component({
   selector: 'app-login',
   standalone: true, // Indica que es un componente standalone
@@ -30,8 +32,11 @@ export class LoginComponent implements OnInit {
       let usuarioGuardado: any = localStorage.getItem('users');
       this.lista_usuarios = JSON.parse(usuarioGuardado);
     } else {
-      alert("Por favor Registrese ");
-      this.router.navigate(['/register']);
+      //alert("Por favor Registrese ");
+      Registrarse();
+      setTimeout(() => {
+        this.router.navigate(['/register']);
+      }, 1000);
     }
   }
 
@@ -56,7 +61,8 @@ export class LoginComponent implements OnInit {
         }, 1000);
 
       } else {
-        alert('Usuario o contraseña incorrectos');
+        //alert('Usuario o contraseña incorrectos');
+        UsuarioError();
       }
     } else {
       console.log('Formulario no válido');
