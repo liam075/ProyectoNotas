@@ -39,25 +39,25 @@
                     <div style="width : 100% ;display: flex ;" >
 
                       <div style="width : 50%">
-  
-                        <a href="#" class="btn btn-primary " style="width:100%">Editar</a>
+
+                        <a (click)="editTablero(item.id)" class="btn btn-primary " style="width:100%">Editar</a>
                       </div>
                       <div style="width : 50%">
-  
+
                         <a href="#" class="btn btn-danger " style="width:100%">Eliminar</a>
                       </div>
                     </div>
-                    
-                   
-  
-                  
+
+
+
+
                   </div>
                 </div>
-                
+
                 } @empty {
                 <li>There are no items.</li>
                 }
-              
+
               <!--
               <div class="col-md-12 col-lg-6 col-xl-4">
                 <div class="card mb-2 bg-gradient-dark">
@@ -79,7 +79,7 @@
                   </div>
                 </div>
               </div>-->
-            } 
+            }
             @else {
               <div class="col-md-12 col-lg-6 col-xl-4">
                 <div class="card mb-2 bg-gradient-dark">
@@ -139,3 +139,45 @@
   <!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->
+
+<!-- /. Editar modal -->
+
+<div class="modal fade" id="modal-edit">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+        <div class="modal-header">
+          <h4 class="modal-title">Editar Tablero</h4> <!--data-dismiss="modal" aria-label="Close"-->
+          <button type="button" class="close" (click)="closeModal()" >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="input-group mb-3" >
+            <input type="text" required id="Edittitle" formControlName="title" class="form-control" placeholder="Titulo">
+
+          </div>
+
+
+          <div class="input-group mb-3" >
+            <textarea placeholder="Subtitulo"  required id="Editsubtitle" formControlName="subtitle" class="form-control" > </textarea>
+
+          </div>
+
+
+          <div class="input-group mb-3" >
+            <input type="text" required  id="image" formControlName="image" class="form-control" placeholder="Ruta de la Imagen">
+
+          </div>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-default" (click)="closeModal()">Cerrar</button>
+          <button type="submit" class="btn btn-primary">Guardar</button>
+        </div>
+      </form>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /. Editar modal -->

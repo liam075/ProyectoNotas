@@ -28,7 +28,14 @@ export class HeaderComponent {
       this.router.navigate(['/register']);
     }
 
-    
+    if (localStorage.getItem('tablero')) {
+      console.log("Existen tableros");
+      this.mostrar_tareas = true;
+    } else {
+      this.mostrar_tareas = false;
+      //alert("Por favor cree un tablero ");
+    //  this.router.navigate(['/tablero']);
+    }
   }
 
 

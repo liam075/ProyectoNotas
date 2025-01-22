@@ -87,6 +87,13 @@
     timer: 3000
   });
 
+  var Toast2 = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 5000
+  });
+
   function UsuarioLogueadoCorrectamento() {
     Toast.fire({
       icon: 'success',
@@ -130,7 +137,7 @@
   }
 
   function InfoCreaTablero() {
-    Toast.fire({
+    Toast2.fire({
       icon: 'info',
       title: 'Crea un tablero para empezar a trabajar'
     })

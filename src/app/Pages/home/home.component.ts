@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+declare var $: any;
+
+declare function InfoCreaTablero(): void;
 @Component({
   selector: 'app-home',
   standalone: true, // Indica que es un componente standalone
@@ -27,6 +30,8 @@ export class HomeComponent implements OnInit {
         let tablero : any= localStorage.getItem('tablero');
         this.lista_tableros = JSON.parse(tablero);
         console.log("------------- lista Tablero ",this.lista_tableros);
+    } else {
+        InfoCreaTablero();
     }
 
     this.categoria_tareas = [
@@ -67,6 +72,16 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  editTablero(id: number): void {
+    $('#modal-edit').modal('show');
+    let tableroFiltrado = this.lista_tableros.filter((tablero : any )=> tablero.id === id);
+    console.log("$$$$$ Tablero  Filtrada ",tableroFiltrado);
+  }
+
+  closeModal() {
+    $('#modal-edit').modal('hide');
+  }
+
   onSubmit() {
     let id = 1;
     let lista_tablero: any = [];
@@ -103,54 +118,5 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  /*
-    let id = 1;
-    let lista_usuarios: any = [];
 
-    if (this.formulario.valid) {
-      let user = this.formulario.value;
-
-
-      if (localStorage.getItem('users')) {
-        console.log("Existen Usuarios");
-        let usuarioGuardado: any = localStorage.getItem('users');
-        lista_usuarios = JSON.parse(usuarioGuardado);
-
-
-        const correoExistente = lista_usuarios.some((usuario: any) => usuario.email === user.email);
-
-        if (correoExistente) {
-          alert("Este correo ya está registrado.");
-          console.log('Correo repetido');
-          return; // Detener la ejecución si el correo está repetido
-        }
-
-        let user_json = {
-          "id": lista_usuarios.length + 1,
-          "name": user.name,
-          "email": user.email,
-          "password": user.password
-        };
-        lista_usuarios.push(user_json);
-        localStorage.setItem('users', JSON.stringify(lista_usuarios));
-
-      } else {
-        let user_json = {
-          "id": id,
-          "name": user.name,
-          "email": user.email,
-          "password": user.password
-        };
-        lista_usuarios.push(user_json);
-        localStorage.setItem('users', JSON.stringify(lista_usuarios));
-        console.log('Formulario Enviado:', lista_usuarios);
-      }
-
-      this.router.navigate(['/login']);
-
-    } else {
-      alert("Por favor complete el formulario.");
-      console.log('Formulario no válido');
-    }
-  */
 }
