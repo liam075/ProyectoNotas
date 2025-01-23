@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-users',
@@ -6,6 +6,19 @@ import { Component } from '@angular/core';
   templateUrl: './users.component.html',
   styleUrl: './users.component.css'
 })
-export class UsersComponent {
+export class UsersComponent implements OnInit {
+  users : any = [];
+  constructor() {
+    if (localStorage.getItem('users')) {
+        let users : any= localStorage.getItem('users');
+        this.users = JSON.parse(users);
+        console.log("------------- lista users ",this.users);
+    } else {
+      
+    }
+  }
+
+  ngOnInit() {
+  }
 
 }

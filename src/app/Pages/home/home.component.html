@@ -26,59 +26,39 @@
           <div class="row">
             @if (lista_tableros.length > 0) {
               @for (item of lista_tableros; track item.id) {
-                <div class="col-md-12 col-lg-6 col-xl-4">
-                  <div class="card mb-2 bg-gradient-dark">
-                    <img class="card-img-top" src="/assets/dist/img/photo1.png" alt="Dist Photo 1">
-                    <div class="card-img-overlay d-flex flex-column justify-content-end">
-                      <h5 class="card-title text-primary text-white">{{ item.title }}</h5>
-                      <p class="card-text text-white pb-2 pt-1">{{item.subtitle}}</p>
-                      <a href="#" class="text-white">Last update 2 mins ago</a>
-                    </div>
-                  </div>
-                  <div style="width: 100%;" >
-                    <div style="width : 100% ;display: flex ;" >
-
-                      <div style="width : 50%">
-
-                        <a (click)="editTablero(item.id)" class="btn btn-primary " style="width:100%">Editar</a>
+                <div class="col-md-12 col-lg-6 col-xl-4" style="padding-bottom: 20px;" >
+                    <a href="#" (click)="irTareas(item.id) ; $event.preventDefault()" style="text-decoration: none;">
+                      <div class="card mb-2 bg-gradient-dark">
+                        <img class="card-img-top" src="/assets/dist/img/photo1.png" alt="Dist Photo 1">
+                        <div class="card-img-overlay d-flex flex-column justify-content-end">
+                          <h5 class="card-title text-primary text-white">{{ item.title }}</h5>
+                          <p class="card-text text-white pb-2 pt-1">{{item.subtitle}}</p>
+                          <a href="#" class="text-white">Last update 2 mins ago</a>
+                        </div>
                       </div>
-                      <div style="width : 50%">
+                    </a>
+                      <div style="width: 100%;" >
+                        <div style="width : 100% ;display: flex ;" >
 
-                        <a href="#" class="btn btn-danger " style="width:100%">Eliminar</a>
+                          <div style="width : 50%">
+
+                            <a (click)="editTablero(item.id)" class="btn btn-primary " style="width:100%">Editar</a>
+                          </div>
+                          <div style="width : 50%">
+
+                            <a href="#" class="btn btn-danger " style="width:100%">Eliminar</a>
+                          </div>
+                        </div>
+
+
+
+
                       </div>
-                    </div>
-
-
-
-
-                  </div>
                 </div>
 
                 } @empty {
                 <li>There are no items.</li>
                 }
-
-              <!--
-              <div class="col-md-12 col-lg-6 col-xl-4">
-                <div class="card mb-2 bg-gradient-dark">
-                  <img class="card-img-top" src="/assets/dist/img/photo1.png" alt="Dist Photo 1">
-                  <div class="card-img-overlay d-flex flex-column justify-content-end">
-                    <h5 class="card-title text-primary text-white">Card Title</h5>
-                    <p class="card-text text-white pb-2 pt-1">Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmod tempor.</p>
-                    <a href="#" class="text-white">Last update 2 mins ago</a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-12 col-lg-6 col-xl-4">
-                <div class="card mb-2 bg-gradient-dark">
-                  <img class="card-img-top" src="/assets/dist/img/photo1.png" alt="Dist Photo 1">
-                  <div class="card-img-overlay d-flex flex-column justify-content-end">
-                    <h5 class="card-title text-primary text-white">Card Title</h5>
-                    <p class="card-text text-white pb-2 pt-1">Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmod tempor.</p>
-                    <a href="#" class="text-white">Last update 2 mins ago</a>
-                  </div>
-                </div>
-              </div>-->
             }
             @else {
               <div class="col-md-12 col-lg-6 col-xl-4">
@@ -145,7 +125,7 @@
 <div class="modal fade" id="modal-edit">
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
-      <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+      <form [formGroup]="formularioEdit" (ngSubmit)="onSubmitEdit()">
         <div class="modal-header">
           <h4 class="modal-title">Editar Tablero</h4> <!--data-dismiss="modal" aria-label="Close"-->
           <button type="button" class="close" (click)="closeModal()" >
@@ -153,6 +133,7 @@
           </button>
         </div>
         <div class="modal-body">
+          <input type="hidden" id="tableroid" formControlName="tableroid" class="form-control">
           <div class="input-group mb-3" >
             <input type="text" required id="Edittitle" formControlName="title" class="form-control" placeholder="Titulo">
 
@@ -166,7 +147,7 @@
 
 
           <div class="input-group mb-3" >
-            <input type="text" required  id="image" formControlName="image" class="form-control" placeholder="Ruta de la Imagen">
+            <input type="text" required  id="Editimage" formControlName="image" class="form-control" placeholder="Ruta de la Imagen">
 
           </div>
         </div>

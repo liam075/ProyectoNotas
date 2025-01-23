@@ -1,0 +1,27 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  text-align: center; /* Centra el texto horizontalmente */
+  vertical-align: middle; /* Centra el texto verticalmente */
+  padding: 8px; /* Añade un poco de espacio dentro de las celdas */
+}
+
+.table-bordered {
+  border: 1px solid #dee2e6;
+}
+
+.table-bordered th, .table-bordered td {
+  border: 1px solid #dee2e6;
+}
+
+.progress {
+  height: 10px;
+  margin-bottom: 0;
+}
+
+.badge {
+  font-size: 90%;
+}
