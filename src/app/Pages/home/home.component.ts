@@ -21,6 +21,7 @@ export class HomeComponent implements OnInit {
   recargar : Boolean;
   lista_tableros :any = [];
   categoria_tareas : any = [];
+  lista_imagen : any = [];
   constructor(private fb: FormBuilder,private router: Router) {
     this.recargar = false;
     this.formulario = this.fb.group({
@@ -43,6 +44,26 @@ export class HomeComponent implements OnInit {
     } else {
         InfoCreaTablero();
     }
+
+    this.lista_imagen = [
+      {
+        "id": 1,
+        "image": "/assets/dist/img/photo1.png",
+      },
+      {
+        "id": 2,
+        "image": "/assets/dist/img/photo2.png",
+      },
+      {
+        "id": 3,
+        "image": "/assets/dist/img/photo3.png",
+      },
+      {
+        "id": 4,
+        "image": "/assets/dist/img/photo4.jpg",
+      }
+    ];
+
 
     this.categoria_tareas = [
       {
@@ -139,41 +160,38 @@ export class HomeComponent implements OnInit {
   irTareas(id: number): void {
     this.router.navigate(['tablero/tareas/', id]);
   }
+  ValidarTableros() {
+    if (localStorage.getItem('tablero')) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  buscarPosicionTablero(lista_tablero: any[], id: number): number | null {
+    const indice = lista_tablero.findIndex(tablero => tablero.id === id);
+    return indice !== -1 ? indice : null;
+  }
+
   //El Submit para Editar el Tablero
   onSubmitEdit() {
+    let id=  Number($('#tableroid').val());
+    let lista_tablero: any = [];
     if (this.formularioEdit.valid) {
       // Obtener los valores del formulario
       const tablero = this.formularioEdit.value;
+      if (this.ValidarTableros()) {
+        // Obtener el arreglo de tableros almacenados en localStorage
 
-      // Obtener el arreglo de tableros almacenados en localStorage
-      let lista_tablero: any[] = [];
-      const tableroGuardado = localStorage.getItem('tablero');
-
-      if (tableroGuardado) {
+        let  tableroGuardado : any = localStorage.getItem('tablero');
         lista_tablero = JSON.parse(tableroGuardado);
+        let posicion : any = this.buscarPosicionTablero(lista_tablero,id);
+        if (posicion!== null) {
+          console.log("Posicion ", posicion);
 
-        // Crear un nuevo objeto de tablero con los valores actualizados
-        const tableroActualizado = {
-          id: tablero.tableroid, // ID del tablero que se está editando
-          title: tablero.title, // Nuevo título
-          subtitle: tablero.subtitle, // Nuevo subtítulo
-          image: tablero.image, // Nueva ruta de imagen
-          id_user: lista_tablero[0]?.id_user || 1 // Mantener el id_user del primer tablero
-        };
-
-        // Filtrar para eliminar el tablero con el mismo ID y agregar el actualizado
-        const tableroFiltrado = lista_tablero.filter((t: any) => t.id !== tablero.tableroid);
-        tableroFiltrado.push(tableroActualizado);
-
-        // Guardar el nuevo arreglo en localStorage
-        localStorage.setItem('tablero', JSON.stringify(tableroFiltrado));
-
-        // Opcional: Recargar la página o cerrar el modal
-        this.closeModal();
-        alert("Tablero actualizado exitosamente");
-      } else {
-        alert("No hay tableros almacenados");
+        }
       }
+
     } else {
       // Mostrar alerta si faltan datos
       alert("Introduzca todos los datos correspondientes");
