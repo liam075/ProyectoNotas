@@ -140,13 +140,6 @@ export class TasksComponent implements OnInit {
     $('#titleEdit').val(tareaFiltrada[0]['title']);
     $('#subtitleEdit').val(tareaFiltrada[0]['subtitle']);
     this.categoriaSeleccionada = tareaFiltrada[0]['categoria_id'];
-
-
-
-
-
-    // // Cierra el modal cuando se hace clic en el fondo o el botón de cerrar
-
   }
 
   openModal(id:number) {
@@ -173,12 +166,12 @@ export class TasksComponent implements OnInit {
       if (this.ValidarTareas()){
         let tareasGuardado: any = localStorage.getItem('tareas');
         lista_tareas = JSON.parse(tareasGuardado);
-        const indice = lista_tareas.findIndex((item : any) => item.id === id); 
+        const indice = lista_tareas.findIndex((item : any) => item.id === id);
         if (indice !== -1) {
-          lista_tareas.splice(indice, 1); 
+          lista_tareas.splice(indice, 1);
           localStorage.setItem('tareas', JSON.stringify(lista_tareas));
           location.reload();
-        } 
+        }
       }
     }
   }

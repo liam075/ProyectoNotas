@@ -7,6 +7,7 @@ declare var $: any;
 declare function InfoCreaTablero(): void;
 declare function TableroCreadoCorrectamente(): void;
 
+declare function PorFavorSeleccionaImagen(): void;
 declare function TableroEditadoCorrectamente(): void;
 @Component({
   selector: 'app-home',
@@ -22,12 +23,16 @@ export class HomeComponent implements OnInit {
   lista_tableros :any = [];
   categoria_tareas : any = [];
   lista_imagen : any = [];
+  seleccion_imagen : boolean = false;
+  imagen_seleccionada : any = {};
+  id_imagen_seleccionada: number | null = null;
+  id_imagen_edit  : number | null = null;
   constructor(private fb: FormBuilder,private router: Router) {
     this.recargar = false;
     this.formulario = this.fb.group({
       title: ['', [Validators.required]],
       subtitle: ['', [Validators.required]],
-      image :  ['', [Validators.required]],
+      image :  [''],
     });
 
     this.formularioEdit = this.fb.group({
@@ -56,7 +61,7 @@ export class HomeComponent implements OnInit {
       },
       {
         "id": 3,
-        "image": "/assets/dist/img/photo3.png",
+        "image": "/assets/dist/img/photo3.jpg",
       },
       {
         "id": 4,
@@ -100,10 +105,22 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  saveImage(id:number) : void {
+    this.seleccion_imagen = true;
+    this.id_imagen_seleccionada = id;
+    let imagen = this.lista_imagen.filter((img : any )=> img.id === id);
+    console.log(" Imagen Filtrada ", imagen );
+    this.imagen_seleccionada = {
+      'id': id,
+      'image': imagen[0].image
+    };
+  }
+
   editTablero(id: number): void {
     $('#modal-edit').modal('show');
     let tableroFiltrado = this.lista_tableros.filter((tablero : any )=> tablero.id === id);
     console.log("$$$$$ Tablero  Filtrada ",tableroFiltrado);
+    this.id_imagen_edit = tableroFiltrado[0].id_image;
     $('#tableroid').val(tableroFiltrado[0].id);
     $('#Edittitle').val(tableroFiltrado[0].title);
     $('#Editsubtitle').val(tableroFiltrado[0].subtitle);
@@ -118,6 +135,10 @@ export class HomeComponent implements OnInit {
     let id = 1;
     let lista_tablero: any = [];
     if (this.formulario.valid) {
+      if (this.seleccion_imagen == false ){
+        PorFavorSeleccionaImagen();
+        return;
+      }
       let tablero = this.formulario.value;
       if (localStorage.getItem('tablero')) {
         let tableroGuardado: any = localStorage.getItem('tablero');
@@ -126,7 +147,8 @@ export class HomeComponent implements OnInit {
           'id' : lista_tablero.length + 1,
           'title' : tablero.title,
           'subtitle' : tablero.subtitle,
-          'image' : tablero.image,
+          'id_image' : this.imagen_seleccionada.id,
+          'image' : this.imagen_seleccionada.image,
           'id_user' : id
         };
         lista_tablero.push(tablero_json);
@@ -140,7 +162,8 @@ export class HomeComponent implements OnInit {
           'id' : id,
           'title' : tablero.title,
           'subtitle' : tablero.subtitle,
-          'image' : tablero.image,
+          'id_image' : this.imagen_seleccionada.id,
+          'image' : this.imagen_seleccionada.image,
           'id_user' : id
         };
         lista_tablero.push(tablero_json);

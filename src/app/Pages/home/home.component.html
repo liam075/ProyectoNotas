@@ -29,7 +29,7 @@
                 <div class="col-md-12 col-lg-6 col-xl-4" style="padding-bottom: 20px;" >
                     <a href="#" (click)="irTareas(item.id) ; $event.preventDefault()" style="text-decoration: none;">
                       <div class="card mb-2 bg-gradient-dark">
-                        <img class="card-img-top" src="/assets/dist/img/photo1.png" alt="Dist Photo 1">
+                        <img class="card-img-top" [src]="item.image" alt="Dist Photo 1">
                         <div class="card-img-overlay d-flex flex-column justify-content-end">
                           <h5 class="card-title text-primary text-white">{{ item.title }}</h5>
                           <p class="card-text text-white pb-2 pt-1">{{item.subtitle}}</p>
@@ -105,16 +105,14 @@
 
             <label class="form-text">Escoja una imagen</label>
             <div class="row">
-              <div class="col-sm-2">
-                <a href="" data-toggle="lightbox" data-title="sample 1 - white" data-gallery="gallery">
-                  <img src="/assets/dist/img/photo1.png" class="img-fluid mb-2" alt="white sample"/>
-                </a>
-              </div>
-              <div class="col-sm-2">
-                <a href="" data-toggle="lightbox" data-title="sample 1 - white" data-gallery="gallery">
-                  <img src="/assets/dist/img/photo1.png" class="img-fluid mb-2" alt="white sample"/>
-                </a>
-              </div>
+              @for (item of lista_imagen; track item.id) {
+
+                <div class="col-sm-2">
+                  <a href="" (click)="saveImage(item.id); $event.preventDefault()" data-toggle="lightbox" data-title="sample 1 - white" data-gallery="gallery">
+                    <img [src]="item.image"   [ngStyle]="{'border': id_imagen_seleccionada === item.id ? '6px solid #007bff' : 'none'}"  class="img-fluid mb-2" alt="white sample"/>
+                  </a>
+                </div>
+              }
             </div>
           </div>
 
@@ -160,11 +158,22 @@
 
           </div>
 
-
           <div class="input-group mb-3" >
-            <input type="text" required  id="Editimage" formControlName="image" class="form-control" placeholder="Ruta de la Imagen">
 
+            <label class="form-text">Escoja una imagen</label>
+            <div class="row">
+              @for (item of lista_imagen; track item.id) {
+
+                <div class="col-sm-2">
+                  <a href="" (click)="saveImage(item.id); $event.preventDefault()" data-toggle="lightbox" data-title="sample 1 - white" data-gallery="gallery">
+                    <img [src]="item.image"   [ngStyle]="{'border': id_imagen_edit === item.id ? '6px solid #007bff' : 'none'}"  class="img-fluid mb-2" alt="white sample"/>
+                  </a>
+                </div>
+              }
+            </div>
           </div>
+
+       
         </div>
         <div class="modal-footer justify-content-between">
           <button type="button" class="btn btn-default" (click)="closeModal()">Cerrar</button>
