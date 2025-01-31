@@ -24,6 +24,7 @@ export class HomeComponent implements OnInit {
   categoria_tareas : any = [];
   lista_imagen : any = [];
   seleccion_imagen : boolean = false;
+  seleccion_imagen_edit : boolean = false;
   imagen_seleccionada : any = {};
   id_imagen_seleccionada: number | null = null;
   id_imagen_edit  : number | null = null;
@@ -108,6 +109,17 @@ export class HomeComponent implements OnInit {
   saveImage(id:number) : void {
     this.seleccion_imagen = true;
     this.id_imagen_seleccionada = id;
+    let imagen = this.lista_imagen.filter((img : any )=> img.id === id);
+    console.log(" Imagen Filtrada ", imagen );
+    this.imagen_seleccionada = {
+      'id': id,
+      'image': imagen[0].image
+    };
+  }
+
+  editImage(id:number) :void {
+    this.seleccion_imagen = true;
+    this.id_imagen_edit = id;
     let imagen = this.lista_imagen.filter((img : any )=> img.id === id);
     console.log(" Imagen Filtrada ", imagen );
     this.imagen_seleccionada = {

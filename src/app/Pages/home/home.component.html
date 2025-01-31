@@ -165,7 +165,7 @@
               @for (item of lista_imagen; track item.id) {
 
                 <div class="col-sm-2">
-                  <a href="" (click)="saveImage(item.id); $event.preventDefault()" data-toggle="lightbox" data-title="sample 1 - white" data-gallery="gallery">
+                  <a href="" (click)="editImage(item.id); $event.preventDefault()" data-toggle="lightbox" data-title="sample 1 - white" data-gallery="gallery">
                     <img [src]="item.image"   [ngStyle]="{'border': id_imagen_edit === item.id ? '6px solid #007bff' : 'none'}"  class="img-fluid mb-2" alt="white sample"/>
                   </a>
                 </div>
@@ -173,7 +173,7 @@
             </div>
           </div>
 
-       
+
         </div>
         <div class="modal-footer justify-content-between">
           <button type="button" class="btn btn-default" (click)="closeModal()">Cerrar</button>
